@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Only for U</title>
+    </head>
+
+    <body>
+        <h1 id="message">gv</h1>
+    </body>
+
+    <style>
+        @font-face {
+            font-family: 'main';
+            src: url('font.ttf')
+        }
+        body {
+            background-color: oklch(29.1% 0.149 302.717);
+        }
+        #message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            font-family: main;
+            color: white;
+            letter-spacing:  2px;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        async function show_message() {
+            const source = await fetch('messages.json')
+            const messages = await source.json()
+            const message = messages[Math.floor(Math.random() * messages.length)]
+            document.getElementById('message').textContent = message
+        }
+
+        show_message()
+    </script>
+</html>
